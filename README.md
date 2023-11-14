@@ -1,2 +1,3 @@
 # TicTak
-Spēle
+# Spēle
+from tkinter impor
