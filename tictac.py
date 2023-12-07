@@ -25,15 +25,15 @@ def btnClick(button): #padod visu pogu
     return 0
 
 
-btn1=Button(mansLogs,text='',width=6,height=3,font=("Helvica", 24),command=lambda:btnClick(btn1))
-btn2=Button(mansLogs,text='',width=6,height=3,font=("Helvica", 24),command=lambda:btnClick(btn2))
-btn3=Button(mansLogs,text='',width=6,height=3,font=("Helvica", 24),command=lambda:btnClick(btn3))
-btn4=Button(mansLogs,text='',width=6,height=3,font=("Helvica", 24),command=lambda:btnClick(btn4))
-btn5=Button(mansLogs,text='',width=6,height=3,font=("Helvica", 24),command=lambda:btnClick(btn5))
-btn6=Button(mansLogs,text='',width=6,height=3,font=("Helvica", 24),command=lambda:btnClick(btn6))
-btn7=Button(mansLogs,text='',width=6,height=3,font=("Helvica", 24),command=lambda:btnClick(btn7))
-btn8=Button(mansLogs,text='',width=6,height=3,font=("Helvica", 24),command=lambda:btnClick(btn8))
-btn9=Button(mansLogs,text='',width=6,height=3,font=("Helvica", 24),command=lambda:btnClick(btn9))
+btn1=Button(mansLogs,text='',width=6,height=3,font=("Helvica", 24),bg="brown",command=lambda:btnClick(btn1))
+btn2=Button(mansLogs,text='',width=6,height=3,font=("Helvica", 24),bg="brown",command=lambda:btnClick(btn2))
+btn3=Button(mansLogs,text='',width=6,height=3,font=("Helvica", 24),bg="brown",command=lambda:btnClick(btn3))
+btn4=Button(mansLogs,text='',width=6,height=3,font=("Helvica", 24),bg="white",command=lambda:btnClick(btn4))
+btn5=Button(mansLogs,text='',width=6,height=3,font=("Helvica", 24),bg="white",command=lambda:btnClick(btn5))
+btn6=Button(mansLogs,text='',width=6,height=3,font=("Helvica", 24),bg="white",command=lambda:btnClick(btn6))
+btn7=Button(mansLogs,text='',width=6,height=3,font=("Helvica", 24),bg="brown",command=lambda:btnClick(btn7))
+btn8=Button(mansLogs,text='',width=6,height=3,font=("Helvica", 24),bg="brown",command=lambda:btnClick(btn8))
+btn9=Button(mansLogs,text='',width=6,height=3,font=("Helvica", 24),bg="brown",command=lambda:btnClick(btn9))
 
 
 
@@ -60,6 +60,9 @@ def disableButtons():
     return 0
 
 def reset():
+    global count, speletajsX
+    count=0
+    speletajsX= True
     btn1.config(state=NORMAL)
     btn2.config(state=NORMAL)
     btn3.config(state=NORMAL)
@@ -78,7 +81,20 @@ def reset():
     btn7['text']=''
     btn8['text']=''
     btn9['text']=''
-    count=0 
+    
+def infoLogs():
+    newLogs=Toplevel()
+    newLogs.title("Info par programmu")
+    newLogs.geometry("400x200")
+    desc=Label(newLogs,text="Pirmais sāk X (pirmais speletajs) un spiež tukšajos lauciņos")
+    desc.grid(row=0,column=0)
+    desc=Label(newLogs, text="Pirmais kuram 3 savienojas horizontāli, vertikāli vai diagonāli uzvar")
+    desc.grid(row=1,column=0)
+    desc=Label(newLogs,text="ja visas rūtiņas tiek aizpildītas bez savienojuma no 3, tad ir neizšķirts")
+    desc.grid(row=2,column=0)
+    desc=Label(newLogs,text="Izbaudiet speli!")
+    desc.grid(row=3,column=0)
+    return 0
 
 def checkWinner():
     global winner
@@ -105,12 +121,15 @@ def checkWinner():
 
 
 galvenaIzvelne=Menu(mansLogs)#izveido galveno izvēlni
-mansLogs.config(menu=galvenaIzvelne)#pievieno galvenajam logam 
-opcijas=Menu(galvenaIzvelne,tearoff=False)#maza izvēlne
+mansLogs.config(menu=galvenaIzvelne)#pievieno galvenajam logam
+
+opcijas=Menu(galvenaIzvelne,tearoff=False)#maza izvēlne\
 galvenaIzvelne.add_cascade(label="Opcijas",menu=opcijas)   
 #lejupkritosais sarakst
+
 opcijas.add_command(label="Jauna spēle",command=reset)
 opcijas.add_command(label="Iziet",command=mansLogs.quit)
+galvenaIzvelne.add_command(label="Par",command=infoLogs)
 
 
 
